@@ -20,6 +20,7 @@ public:
   Menu(int,sf::RenderWindow &w);
   void draw(sf::RenderWindow &w);
   sf::RenderWindow *window;
+  sf::RectangleShape getOutBox();
 private:
   sf::RectangleShape outBox;
   sf::RectangleShape paused;
@@ -35,9 +36,9 @@ private:
 class menuItem :public sf::Drawable
 {
 public:
-	menuItem(std::string, Menu&,int);
+	menuItem(std::string, Menu&,int,int);
 	//active
-	
+
 
 private:
 	sf::RectangleShape box;
@@ -47,4 +48,6 @@ private:
 
 	float menuHeight;
 	float menuWidth;
+
+  sf::Vector2f ItemSize;
 };
