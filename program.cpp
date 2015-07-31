@@ -76,7 +76,8 @@ sf::RectangleShape Menu::getOutBox()
 	return outBox;
 }
 
-menuItem::menuItem(std::string text, Menu &parentMenu,int nunmberOfItems, int itemNumber)
+
+menuItem::menuItem(std::string text, Menu &parentMenu, int nunmberOfItems, int itemNumber)
 {
 	windowHeight = parentMenu.window->getSize().y;
 	windowLength = parentMenu.window->getSize().x;
@@ -84,15 +85,17 @@ menuItem::menuItem(std::string text, Menu &parentMenu,int nunmberOfItems, int it
 	menuHeight = parentMenu.getOutBox().getSize().y;
 	menuWidth = parentMenu.getOutBox().getSize().x;
 
-	ItemSize.X = menuWidth;
-	ItemSize.Y = menuHeight/nunmberOfItems;
+	ItemSize.x = menuWidth;
+	ItemSize.y = menuHeight / nunmberOfItems;
 
-	box = sf::RectangleShape(ItemSize.X , ItemSize.Y);
-	box.setPosition(windowLength/2  - ItemSize.X /2 , (windowHeight - menuHeight)/2);
+	box = sf::RectangleShape(sf::Vector2f(ItemSize.x, ItemSize.y));
+	box.setPosition(windowLength / 2 - ItemSize.x / 2, (windowHeight - menuHeight) / 2);
 	box.setOutlineThickness(2);
 	box.setOutlineColor(sf::Color::Red);
 	box.setFillColor(sf::Color::White);
+}
 
-
-
+void menuItem::draw(sf::RenderWindow &w)
+{
+	w.draw(box);
 }
