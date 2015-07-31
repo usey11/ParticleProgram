@@ -1,5 +1,11 @@
 #include "program.hpp"
-
+struct sizes
+{
+	float windowHeight;
+	float windowLength;
+	float menuHeight;
+	float menuLength;
+};
 programLoop::programLoop(sf::RenderWindow &w)
 {
 	sf::Font arial;
@@ -63,12 +69,21 @@ Menu::Menu(int a, sf::RenderWindow &w)
 
 	std::cout <<a;
 	window = &w;
+	sizes s1;
+	s1.windowHeight = window->getSize().y;
+	s1.windowLength = window->getSize().x;
+
+	s1.menuHeight = outBox.getSize().y;
+	s1.menuLength = outBox.getSize().x;
+
+	item = new menuItem("kkk", this, 5, 1);
 }
 
 void Menu::draw(sf::RenderWindow &w)
 {
 	w.draw(outBox);
 	w.draw(paused);
+	item->draw(w);
 }
 
 sf::RectangleShape Menu::getOutBox()
@@ -77,13 +92,13 @@ sf::RectangleShape Menu::getOutBox()
 }
 
 
-menuItem::menuItem(std::string text, Menu &parentMenu, int nunmberOfItems, int itemNumber)
+menuItem::menuItem(std::string text, Menu *parentMenu, int nunmberOfItems, int itemNumber)
 {
-	windowHeight = parentMenu.window->getSize().y;
-	windowLength = parentMenu.window->getSize().x;
+	windowHeight = parentMenu->window->getSize().y;
+	windowLength = parentMenu->window->getSize().x;
 
-	menuHeight = parentMenu.getOutBox().getSize().y;
-	menuWidth = parentMenu.getOutBox().getSize().x;
+	menuHeight = parentMenu->getOutBox().getSize().y;
+	menuWidth = parentMenu->getOutBox().getSize().x;
 
 	ItemSize.x = menuWidth;
 	ItemSize.y = menuHeight / nunmberOfItems;

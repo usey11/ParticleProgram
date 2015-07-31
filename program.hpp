@@ -1,9 +1,10 @@
-
 #include <SFML\Window.hpp>
 #include <SFML\System.hpp>
 #include <SFML\Graphics.hpp>
 #include <iostream>
 
+class menuItem;
+class Menu;
 
 class programLoop
 {
@@ -26,7 +27,7 @@ public:
 private:
   sf::RectangleShape outBox;
   sf::RectangleShape paused;
-  //menuItem item;
+  menuItem* item;
 
   //Paused
   //Resume
@@ -38,7 +39,7 @@ private:
 class menuItem
 {
 public:
-	menuItem(std::string, Menu&, int, int);
+	menuItem(std::string, Menu *, int, int);
 	//active
 	void draw(sf::RenderWindow &w);
 
