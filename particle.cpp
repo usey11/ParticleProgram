@@ -121,6 +121,10 @@ void particle_system::move(sf::Time time)
 		va[i].position.x = va[i].position.x + dt*velocities[i].i;
 		va[i].position.y = va[i].position.y + dt*velocities[i].j;
 	}
+
+	
+	checkBoundry();
+	colourScale();
 }
 
 void particle_system::checkBoundry()
@@ -168,7 +172,7 @@ void particle_system::colourScale()
 {
 	for (int i = 0; i < numberOfParticles; i++)
 	{
-		va[i].color.g = 55;
+		va[i].color.g = 100;
 		va[i].color.a = 255;
 		va[i].color.b = 255 * (va[i].position.x / static_cast<float>(sizeOfWindow.x));
 		va[i].color.r = 255 * (va[i].position.y / static_cast<float>(sizeOfWindow.y));
