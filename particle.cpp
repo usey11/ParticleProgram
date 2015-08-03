@@ -58,6 +58,7 @@ void shape_system::draw(sf::RenderWindow &window)
 particle_system::particle_system(int particles, sf::Vector2u  sizeWindow) :
 va(sf::Points, particles), sizeOfWindow(sizeWindow)
 {
+	colorScheme = 0;
 	srand(time(NULL));
 	numberOfParticles = particles;
 	for (int i = 0; i < numberOfParticles; i++)
@@ -122,7 +123,7 @@ void particle_system::move(sf::Time time)
 		va[i].position.y = va[i].position.y + dt*velocities[i].j;
 	}
 
-	
+
 	checkBoundry();
 	colourScale();
 }
@@ -168,14 +169,32 @@ void particle_system::colourRandom()
 	}
 }
 
+
 void particle_system::colourScale()
 {
 	for (int i = 0; i < numberOfParticles; i++)
 	{
-		va[i].color.g = 100;
-		va[i].color.a = 255;
-		va[i].color.b = 255 * (va[i].position.x / static_cast<float>(sizeOfWindow.x));
-		va[i].color.r = 255 * (va[i].position.y / static_cast<float>(sizeOfWindow.y));
+		if (colorScheme == 0){
+			va[i].color.g = 100;
+			va[i].color.a = 255;
+			va[i].color.b = 255 * (va[i].position.x / static_cast<float>(sizeOfWindow.x));
+			va[i].color.r = 255 * (va[i].position.y / static_cast<float>(sizeOfWindow.y));
+
+		}
+		else if (colorScheme == 1){
+			va[i].color.g = 100;
+			va[i].color.a = 255;
+			va[i].color.b = 255 - (255 * (va[i].position.x / static_cast<float>(sizeOfWindow.x)));
+			va[i].color.r = 255 - (255 * (va[i].position.y / static_cast<float>(sizeOfWindow.y)));
+
+		}
+		else if (colorScheme == 2){
+			va[i].color.g = 100;
+			va[i].color.a = 255;
+			va[i].color.b = 255 * ((va[i].position.x / static_cast<float>(sizeOfWindow.x)-125));
+			va[i].color.r = 255 * ((va[i].position.y / static_cast<float>(sizeOfWindow.y)-125));
+
+		}
 	}
 }
 
@@ -196,4 +215,9 @@ void particle_system::towardsPoint(sf::Vector2i p)
 		velocities[i].i = normalX*magnitude;
 		velocities[i].j = normalY*magnitude;
 	}
+}
+
+void particle_system::setColourScheme(int a)
+{
+	colorScheme = a;
 }

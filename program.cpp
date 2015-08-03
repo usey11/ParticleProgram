@@ -20,7 +20,7 @@ void programLoop::loop()
 {
 	int error = 0;
 
-	particle_system system1(50000, window->getSize());
+	particle_system system1(10000, window->getSize());
 
 	sf::Clock c1;
 
@@ -47,8 +47,9 @@ void programLoop::loop()
 
 	system1.randomPos();
 	system1.randomVs();
+	system1.setColourScheme(2);
 
-	
+
 	c1.restart();
 
 	while (window->isOpen())
@@ -65,7 +66,23 @@ void programLoop::loop()
 				{
 					paused = !paused;
 					c1.restart();
+					toPoint = false;
 				}												//P for Pause
+
+				if (event.key.code == sf::Keyboard::R)			//P for Pause
+				{
+					c1.restart();
+					toPoint = false;
+
+					system1.randomPos();
+					system1.randomVs();
+				}
+
+				if (event.key.code == sf::Keyboard::Escape)			//Close when esc pressed
+				{
+					window->close();
+
+				}
 			}													//Key Shortcuts
 
 			//Menu Buisness
@@ -134,6 +151,9 @@ Menu::Menu(sf::RenderWindow &w)
 	menu.setOrigin(menu.getLocalBounds().width /2, menu.getLocalBounds().height/2);
 	menu.setPosition(w.getSize().x / 2, w.getSize().y / 2);
 
+	leftDifference = (w.getSize().x / 2) - 100;
+	topDifference = (w.getSize().y / 2) - 200;
+
 }
 
 void Menu::draw(sf::RenderWindow &w)
@@ -150,19 +170,19 @@ int Menu::checkEvents(sf::Event e,float x , float y)
 		{
 			//float x = sf::Mouse::getPosition().x;
 			//float y = sf::Mouse::getPosition().y;
-			if (x > 300 && x < 500 && y >164 && y < 237){
+			if (x > leftDifference && x < leftDifference + 200 && y >topDifference + 64 && y < topDifference +  137){
 				std::cout << "UNPAUSEEE";
 				//unpause = true;
 				return 1;
 			}
 
-			if (x > 300 && x < 500 && y >237 && y < 292){
+			if (x > leftDifference && x < leftDifference + 200 && y > topDifference + 137 && y < topDifference + 192){
 				std::cout << "RESET";
 				//unpause = true;
 				return 2;
 			}
 
-			if (x > 300 && x < 500 && y >292 && y < 365){
+			if (x > leftDifference && x < leftDifference + 200 && y > topDifference + 192 && y <topDifference +  265){
 				std::cout << "TO POINT";
 				//unpause = true;
 				return 3;

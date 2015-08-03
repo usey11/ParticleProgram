@@ -24,6 +24,9 @@ public:
 	void draw(sf::RenderWindow &w);
 	int checkEvents(sf::Event,float,float);
 	
+	int leftDifference;
+	int topDifference;
+
 	void resetSignals();
 	//bool unpause;
 

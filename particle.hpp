@@ -43,10 +43,12 @@ public:
 	void colourRandom();
 	void colourScale();
 	void towardsPoint(sf::Vector2i);
+	void setColourScheme(int);
 private:
 	vector<velocity> velocities;
 	sf::VertexArray va;
 	sf::Vector2u sizeOfWindow;
 	int numberOfParticles;
+	int colorScheme;
 };
 
