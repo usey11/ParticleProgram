@@ -20,10 +20,16 @@ private:
 class Menu
 {
 public:
-	Menu();
+	Menu(sf::RenderWindow &w);
 	void draw(sf::RenderWindow &w);
+	int checkEvents(sf::Event,float,float);
+	
+	void resetSignals();
+	//bool unpause;
+
 
 private:
+	
 	sf::Texture menuImage;
 	sf::Sprite menu;
 
