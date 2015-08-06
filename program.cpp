@@ -11,8 +11,6 @@ struct sizes
 };
 programLoop::programLoop(sf::RenderWindow &w)
 {
-	sf::Font arial;
-	arial.loadFromFile("arial.ttf");
 	window = &w;
 }
 
@@ -28,26 +26,10 @@ void programLoop::loop()
 	bool toPoint = false;
 
 	Menu menu(*window);
-	sf::Font font;
-	font.loadFromFile("arial.ttf");
-
-	sf::Text text("Jacob", font);
-	text.setCharacterSize(60);
-	text.setStyle(sf::Text::Bold);
-	text.setColor(sf::Color::White);
-
-	sf::FloatRect tRect = text.getLocalBounds();
-	float h = tRect.height;
-	float w = tRect.width;
-
-	text.setOrigin(w / 2, h / 2);
-	text.setPosition(400, 300);
-
-
 
 	system1.randomPos();
 	system1.randomVs();
-	system1.setColourScheme(2);
+	system1.setColourScheme(1);
 
 
 	c1.restart();

@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include <SFML\System.hpp>
-#include <SFML\Window.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
 using namespace std;
 
 struct velocity
@@ -51,4 +51,3 @@ private:
 	int numberOfParticles;
 	int colorScheme;
 };
-
